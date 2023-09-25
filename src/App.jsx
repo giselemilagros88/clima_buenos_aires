@@ -229,7 +229,7 @@ const redondearTemperatura = (temperatura) => {
          <table class="table table-striped table-hover">
            <thead>
              <tr>
-               <th class="text-center" >Fecha - Hora</th>
+               <th class="text-center" > Hora</th>
                <th class="text-center" >Temperatura</th>
                <th class="text-center" >Clima</th>
              </tr>
@@ -241,13 +241,13 @@ const redondearTemperatura = (temperatura) => {
                    {index === 0 || formatearFecha(item.dt) !== formatearFecha(list[index - 1].dt) ? (
                      <tr>
                        <td colSpan="6">
-                        <p class="text-center fw-bold fs-4">{obtenerDiaSemanaEnEspanol(item.dt_txt)}</p>
+                        <p class="text-center fw-bold fs-4">{obtenerDiaSemanaEnEspanol(item.dt_txt)} - {formatearFecha(item.dt)}</p>
                         <hr />
                        </td>
                      </tr>
                    ) : null}
                    <tr >
-                     <td class="table-primary">{formatearFecha(item.dt)} {formatearHora(item.dt)} </td>
+                     <td class="table-primary text-center">{formatearHora(item.dt)} </td>
                     
                      <td class="table-danger fw-bold text-center" >{redondearTemperatura(item.main.temp)}</td>
                      <td class="table-light text-center" >
@@ -256,7 +256,7 @@ const redondearTemperatura = (temperatura) => {
                          alt={item.weather[0].description}
                        />
                      </td>
-                     <td class="table-success oculto">{traducirDescripcion(item.weather[0].description)}</td>
+                     <td class="table-success">{traducirDescripcion(item.weather[0].description)}</td>
                    </tr>
                  </React.Fragment>
                ))}
