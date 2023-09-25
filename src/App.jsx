@@ -201,10 +201,10 @@ const redondearTemperatura = (temperatura) => {
 
   return (
     <div class="container-fluid">
-      <h1 class="text-center mb-5">Clima para Buenos Aires</h1>
+      <h1 class="text-center mb-5">Pronostico Buenos Aires</h1>
       <div class="row justify-content-between align-start gap-2">
       {weather!==null && (
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-5">
               <div class="row shadow-lg p-3 mb-5 bg-tarjetas rounded position-sticky top-0 left-0">
                 <div class="col-sm-12">
                   <p>Fecha y Hora: {fechaActual} - {horaActual} </p>
@@ -224,14 +224,14 @@ const redondearTemperatura = (temperatura) => {
           </div>
       )}
       {tiempoFuturo!==null && (
-         <div class="col-sm-12 col-md-5 shadow-lg bg-tarjetas p-3 mb-5 rounded">
+         <div class="col-sm-12 col-md-6 shadow-lg bg-tarjetas p-3 mb-5 rounded">
          <h2 class="text-center">Temperatura proximos días</h2>
          <table class="table table-striped table-hover">
            <thead>
              <tr>
-               <th colSpan="2" class="text-center" >Fecha - Hora</th>
+               <th class="text-center" >Fecha - Hora</th>
                <th class="text-center" >Temperatura</th>
-               <th colSpan="4" class="text-center" >Clima</th>
+               <th class="text-center" >Clima</th>
              </tr>
            </thead>
            <tbody>
@@ -240,15 +240,15 @@ const redondearTemperatura = (temperatura) => {
                  <React.Fragment key={index}>
                    {index === 0 || formatearFecha(item.dt) !== formatearFecha(list[index - 1].dt) ? (
                      <tr>
-                       <td colSpan="9">
+                       <td colSpan="6">
                         <p class="text-center fw-bold fs-4">{obtenerDiaSemanaEnEspanol(item.dt_txt)}</p>
                         <hr />
                        </td>
                      </tr>
                    ) : null}
                    <tr >
-                     <td class="table-primary">{formatearFecha(item.dt)}</td>
-                     <td class="table-primary">{formatearHora(item.dt)}</td>
+                     <td class="table-primary">{formatearFecha(item.dt)} {formatearHora(item.dt)} </td>
+                    
                      <td class="table-danger fw-bold text-center" >{redondearTemperatura(item.main.temp)}</td>
                      <td class="table-light text-center" >
                        <img
@@ -256,7 +256,7 @@ const redondearTemperatura = (temperatura) => {
                          alt={item.weather[0].description}
                        />
                      </td>
-                     <td class="table-success" colSpan="1">{traducirDescripcion(item.weather[0].description)}</td>
+                     <td class="table-success oculto">{traducirDescripcion(item.weather[0].description)}</td>
                    </tr>
                  </React.Fragment>
                ))}
